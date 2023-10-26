@@ -40,6 +40,39 @@ class DoublyLinkedList:
             self.head = new_node
             
 
+# pop & pop_first的邏輯都是先分成三種case: 1.空 2.只有一個元素 3. 兩個元素及以上 
+
+    def pop_first(self):
+        if self.head == None:
+            return
+        if self.head.next == None:
+            self.head = None
+            self.tail = None
+            return
+        
+        tmp = self.head
+        self.head = self.head.next
+        self.head.prev = None
+        # tmp = None
+        return
+        
+    def pop(self):
+        if self.head == None:
+            return
+        
+        if self.head.next == None:
+            self.head = None
+            self.tail = None
+            return
+        
+        tmp = self.tail
+        self.tail = tmp.prev
+        self.tail.next = None
+        tmp.prev = None
+        return
+        
+        
+        
 if __name__ == "__main__":
     
     LinkedList = DoublyLinkedList()
@@ -48,6 +81,9 @@ if __name__ == "__main__":
     LinkedList.append(3)
     LinkedList.prepend(5)
     LinkedList.prepend(77)
+    LinkedList.pop()
+
+    # LinkedList.pop_first()
     LinkedList.print_linkedlist()
 
     
