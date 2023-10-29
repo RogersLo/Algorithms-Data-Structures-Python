@@ -17,7 +17,7 @@ class DoublyLinkedList:
             tmp = tmp.next
             if tmp:
                 print(" <-> ", end="")
-        
+        print()
                      
     def append(self, value):
         new_node = Node(value)
@@ -53,8 +53,8 @@ class DoublyLinkedList:
         tmp = self.head
         self.head = self.head.next
         self.head.prev = None
-        # tmp = None
-        return
+        tmp.next = None # tmp.next要 = None的原因是要讓原本頭部節點對下一個節點的連結斷掉
+        return tmp # return tmp就是要return被刪除的是誰
         
     def pop(self):
         if self.head == None:
@@ -69,7 +69,7 @@ class DoublyLinkedList:
         self.tail = tmp.prev
         self.tail.next = None
         tmp.prev = None
-        return
+        return tmp
         
         
         
@@ -79,11 +79,17 @@ if __name__ == "__main__":
     LinkedList.append(1)
     LinkedList.append(2)
     LinkedList.append(3)
-    LinkedList.prepend(5)
-    LinkedList.prepend(77)
-    LinkedList.pop()
+    LinkedList.append(4)
+    LinkedList.append(5)
 
-    # LinkedList.pop_first()
+    # LinkedList.prepend(5)
+    # LinkedList.prepend(77)
+    LinkedList.print_linkedlist()
+    print("==========")
+    LinkedList.pop_first()
+    LinkedList.print_linkedlist()
+    print("==========")
+    LinkedList.pop()
     LinkedList.print_linkedlist()
 
     
